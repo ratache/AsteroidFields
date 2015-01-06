@@ -1,0 +1,23 @@
+﻿Build started 2015-01-06 20:14:49.
+     1>Project "C:\Users\UndeadAmilo\Documents\Visual Studio 2013\Projects\AsteroidFields\AsteroidFields\AsteroidFields.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Engine.cpp
+         Engine.cpp
+         c:\program files\windows kits\8.1\include\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+     1>c:\users\undeadamilo\documents\visual studio 2013\projects\asteroidfields\asteroidfields\engine.cpp(11): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+       Link:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\UndeadAmilo\Documents\Visual Studio 2013\Projects\AsteroidFields\Debug\AsteroidFields.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\UndeadAmilo\Documents\Visual Studio 2013\Projects\sp2D3DWrapper\Stuff\32" dinput8.lib d3d9.lib d3dx9.lib dsound.lib dxguid.lib DxErr.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\UndeadAmilo\Documents\Visual Studio 2013\Projects\AsteroidFields\Debug\AsteroidFields.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\UndeadAmilo\Documents\Visual Studio 2013\Projects\AsteroidFields\Debug\AsteroidFields.lib" /MACHINE:X86 Debug\dsutil.obj
+         Debug\dxAudio.obj
+         Debug\dxGraphics.obj
+         Debug\dxImage.obj
+         Debug\dxInput.obj
+         Debug\dxSprite.obj
+         Debug\dxText.obj
+         Debug\Engine.obj
+         Debug\Main.obj
+         AsteroidFields.vcxproj -> C:\Users\UndeadAmilo\Documents\Visual Studio 2013\Projects\AsteroidFields\Debug\AsteroidFields.exe
+     1>Done Building Project "C:\Users\UndeadAmilo\Documents\Visual Studio 2013\Projects\AsteroidFields\AsteroidFields\AsteroidFields.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.09

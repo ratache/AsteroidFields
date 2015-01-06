@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\DirectX">
+      <UniqueIdentifier>{7b4d365f-01cd-43e9-a75f-aa0120d35c63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DirectX">
+      <UniqueIdentifier>{c923abb0-b400-4ab1-9dd0-6bd99a1dada1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DirectX\dxClasses">
+      <UniqueIdentifier>{62726257-9e51-46f8-abcf-884b1e1ae95a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DirectX\dxClasses">
+      <UniqueIdentifier>{18f55da4-e39b-460c-9311-9a5c1d035064}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dxInput.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="dxGraphics.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="dxAudio.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="dxSprite.cpp">
+      <Filter>Source Files\DirectX\dxClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="dxText.cpp">
+      <Filter>Source Files\DirectX\dxClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="dxImage.cpp">
+      <Filter>Source Files\DirectX\dxClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="dsutil.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dxInput.h">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="dxAudio.h">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="dxGraphics.h">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="dxSprite.h">
+      <Filter>Header Files\DirectX\dxClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="dxText.h">
+      <Filter>Header Files\DirectX\dxClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="dxImage.h">
+      <Filter>Header Files\DirectX\dxClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="dsutil.h">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="dxutil.h">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
