@@ -1,6 +1,9 @@
 #include <time.h>
 #include <stdio.h>
 #include <windows.h>
+#include <stdlib.h>
+#include <string>
+
 #include "Engine.h"
 
 #define APPTITLE "AsteroidFields"
@@ -49,20 +52,20 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//DIRECTX INITS
 	/////////////////////////////////////////////////
 	//initialize DirectInput
-	if (!Init_Graphics(hWnd)){
-		MessageBox(hWnd, "Error initializing Direct3d", "Error", MB_OK);
-		return 0;
-	}
-	if (!Init_DirectInput(hWnd))
-	{
-		MessageBox(hWnd, "Error initializing DirectInput", "Error", MB_OK);
-		return 0;
-	}
-	if (!Init_DirectSound(hWnd))
-	{
-		MessageBox(hWnd, "Error initializing DirectSound", "Error", MB_OK);
-		return 0;
-	}
+	//if (!Init_Graphics(hWnd)){
+	//	MessageBox(hWnd, "Error initializing Direct3d", "Error", MB_OK);
+	//	return 0;
+	//}
+	//if (!Init_DirectInput(hWnd))
+	//{
+	//	MessageBox(hWnd, "Error initializing DirectInput", "Error", MB_OK);
+	//	return 0;
+	//}
+	//if (!Init_DirectSound(hWnd))
+	//{
+	//	MessageBox(hWnd, "Error initializing DirectSound", "Error", MB_OK);
+	//	return 0;
+	//}
 
 	//initialize the game
 	if (!Game_Init(hWnd))
@@ -96,7 +99,7 @@ LRESULT WINAPI WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch (msg)
 	{
 	case WM_DESTROY:
-		Game_End(hWnd);
+		Game_End();
 		PostQuitMessage(0);
 		return 0;
 	}

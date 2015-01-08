@@ -25,6 +25,18 @@
     <Filter Include="Header Files\DirectX\dxClasses">
       <UniqueIdentifier>{18f55da4-e39b-460c-9311-9a5c1d035064}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DataObjects">
+      <UniqueIdentifier>{af3f8e2d-fa26-4124-a1e5-d6f25aeeccb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataObjects">
+      <UniqueIdentifier>{181944e5-95b0-4080-9602-c528108b6c2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameLogic">
+      <UniqueIdentifier>{3822546f-9e89-42fe-84c8-7611b790db80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameLogic">
+      <UniqueIdentifier>{074c899f-9bda-4e15-b8fb-310ba0dc34a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">

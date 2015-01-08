@@ -1,47 +1,58 @@
 #include "Engine.h"
 
+
 //timing variable
 long start = GetTickCount();
-
-/********************************
-	ScrollingBackground setup
-********************************/
-int ScrollX, ScrollY; //current scroll position
-int SpeedX, SpeedY; //scroll speed
-LPDIRECT3DSURFACE9 gameworld; //scroll buffer
-long start; //timing variable
-
-int MAPDATA[MAPWIDTH*MAPHEIGHT] = {
-	80, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81,
-	81, 81, 81, 82, 90, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 92, 3, 3, 3, 3, 3, 92, 3,
-	92, 90, 3, 13, 83, 96, 3, 3, 23, 3, 92, 3, 13, 92, 3, 3, 3, 3, 3, 3, 11, 3, 13, 3, 3, 92,
-	90, 3, 3, 3, 3, 3, 3, 3, 10, 3, 3, 3, 3, 3, 23, 3, 3, 3, 3, 3, 3, 3, 13, 3, 92, 90, 3, 96,
-	3, 13, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 96, 3, 23, 3, 96, 3, 3, 92, 90, 3, 3, 3, 3, 3, 3,
-	13, 3, 3, 3, 13, 3, 3, 11, 3, 3, 3, 3, 3, 3, 3, 13, 3, 92, 90, 3, 83, 11, 3, 92, 3, 3, 3,
-	3, 3, 11, 3, 3, 3, 3, 3, 3, 3, 83, 3, 3, 3, 92, 92, 90, 3, 3, 3, 96, 3, 13, 3, 3, 3, 11,
-	10, 3, 3, 3, 3, 3, 13, 3, 3, 13, 3, 3, 3, 92, 90, 3, 23, 3, 3, 3, 3, 3, 3, 96, 3, 3, 83,
-	3, 3, 3, 92, 3, 3, 3, 3, 3, 13, 3, 92, 90, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 23, 3, 3, 3,
-	3, 3, 3, 3, 3, 3, 3, 92, 90, 3, 3, 3, 11, 3, 92, 3, 3, 13, 3, 3, 131, 3, 10, 3, 3, 3, 96,
-	3, 92, 3, 96, 3, 92, 90, 3, 13, 83, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 13, 3, 3, 3, 3, 3, 3,
-	3, 3, 92, 90, 3, 3, 3, 3, 13, 3, 3, 3, 3, 3, 11, 96, 3, 3, 3, 3, 3, 3, 13, 3, 13, 3, 11,
-	92, 90, 92, 3, 13, 3, 3, 3, 3, 3, 3, 92, 3, 10, 3, 23, 3, 3, 3, 3, 3, 3, 3, 3, 3, 92, 90,
-	3, 3, 3, 3, 3, 96, 3, 23, 3, 3, 3, 3, 3, 3, 3, 3, 83, 3, 3, 13, 3, 96, 3, 92, 90, 3, 3, 3,
-	3, 92, 3, 3, 3, 3, 3, 13, 3, 3, 3, 13, 3, 3, 3, 11, 3, 3, 3, 3, 92, 90, 3, 13, 3, 3, 3, 3,
-	3, 3, 3, 96, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 92, 3, 3, 92, 100, 101, 101, 101, 101, 101,
-	101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
-	101, 101, 102
-};
-
+//PLAYER SPRITE
+Sprite* player;
+LPDIRECT3DTEXTURE9 kittytx[7];
+LPDIRECT3DSURFACE9 back;
+LPD3DXSPRITE sh;
 
 bool Game_Init(HWND hwnd)
 {
 	Init_DirectInput(hwnd);
 	Init_Keyboard(hwnd);
 	Init_Mouse(hwnd);
+	Init_Graphics(hwnd);
 
 	start = GetTickCount();
-	BuildGameWorld();
+	createMapTiles();
+	player = new Sprite(100, 100);
+
+	//////////////////////////
+	//// init objects
+	/////////////////////////
 	
+	//load the sprite animation for player
+	int n;
+	char s[20];
+	for (n = 0; n<6; n++)
+	{
+		//set up the filename
+		sprintf_s(s, "cat%d.bmp", n + 1);
+
+		//load texture with "pink" as the transparent color
+		kittytx[n] = LoadTexture(s, D3DCOLOR_XRGB(255, 0, 255));
+		if (kittytx[n] == NULL)
+			return 0;
+	}
+	//////////////////////////////////////////////////
+	//set object initial parameters
+	/////////////////////////////////////////////////
+	player->setPosX(100);
+	player->setPosY(150);
+	player->setWidth(96);
+	player->setHeight(96);
+	player->setFrameCurrent(0);
+	player->setFrameLast(5);
+	player->setAnimDelay(2);
+	player->setAnimCount(0);
+	player->setMoveX(8);
+	player->setMoveY(0);
+
+	player->setColor(255, 255, 255);
+
 	return 1;
 }
 
@@ -57,48 +68,78 @@ tasks for either before or after the screen update.
 void Game_Run(HWND hWnd)
 {
 	//////////////////////////////////////////////////////////////////////////////
-	// REACT TO USER INPUT
+	// UPDATE AND RENDER GAME
 	/////////////////////////////////////////////////////////////////////////////
 	//poll DirectInput devices
 	Poll_Keyboard();
 	Poll_Mouse();
+	int sX = getScrollX();
+	int sY = getScrollY();
+
 	//check for escape key (to exit program)
 	if (Key_Down(DIK_ESCAPE))
 		PostMessage(hWnd, WM_DESTROY, 0, 0);
 	//scroll based on mouse input
-	if (Mouse_X() != 0) ScrollX += Mouse_X();
-	if (Mouse_Y() != 0) ScrollY += Mouse_Y();
-	
-	//////////////////////////////////////////////////////////////////////////////
-	// UPDATE AND RENDER GAME
-	/////////////////////////////////////////////////////////////////////////////
-	
+	if (Mouse_X() != 0){
+		sX += Mouse_X();
+		setScrollX(sX);
+	}
+	if (Mouse_Y() != 0){
+		sY+= Mouse_Y();
+		setScrollY(sY);
+	}
 	//after short delay, ready for next frame?
 	//this keeps the game running at a steady frame rate
 	if (GetTickCount() - start >= 30)
 	{
+		//check for keyboard input
+		if (Key_Down(DIK_LEFT)){
+			sX -= 5;
+			player->setMoveX(sX);
+			setScrollX(sX);
+		}
+		if (Key_Down(DIK_RIGHT)){
+			sX += 5;
+			player->setMoveY(sX);
+			setScrollX(sX);
+		}
+		if (Key_Down(DIK_DOWN)){
+			sY += 5;
+			setScrollY(sY);
+		}
+		if (Key_Down(DIK_UP)){
+			sY -= 5;
+			setScrollY(sY);
+		}
+		//////////
+		//Check anim delay
+		int animcount = player->getAnimCount();
+		player->setAnimCount(animcount + 1);
+		if (player->getAnimCount()  > player->getFrameLast())
+		{
+			player->setAnimCount(0);
+			player->setFrameCurrent((player->getFrameCurrent() +1 ));
+			if (player->getFrameCurrent() > player->getFrameLast()){
+				player->setFrameCurrent(0);
+			}
+		}
+
+
+
 		//reset timing
 		start = GetTickCount();
+		////renderShip();
+		//renderBackgroundTiles();
 
-		//start rendering
-		if (d3ddev->BeginScene())
-		{
-			//update the scrolling view
-			ScrollScreen();
-			//stop rendering
-			d3ddev->EndScene();
-		}
+		renderTiles(kittytx[player->getFrameCurrent()],*player);
 	}
-	//display the back buffer on the screen
-	d3ddev->Present(NULL, NULL, NULL, NULL);
-	
 }
-void Game_End(HWND hWnd)
+
+void Game_End()
 {
-	if (gameworld != NULL){
-		gameworld->Release();
-	}
+	delete player;
 	Kill_Keyboard();
 	Kill_Mouse();
 	dinput->Release(); 
+	Kill_Graphics();
 }
